@@ -1,28 +1,31 @@
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.LayoutManager;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-
-public class WhoAreYou extends JFrame {
-
-	public WhoAreYou(){
+public class WhoAreYou extends JPanel {
+	private CommentPanel cpanel;
+	private DescriptionComment dcomment;
+	private FunPanel fpanel;
+	private PreferredPanel ppanel;
+	private FeedBackPanel fb;
+	
+	public WhoAreYou() {
 		super();
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocationRelativeTo(null);
-		setSize(new Dimension(1050, 425));
-		setTitle("Who Are You?");
-		HeightPanel hPanel = new HeightPanel();
-		WeightPanel wPanel = new WeightPanel();
-		add(hPanel, BorderLayout.EAST);
-		add(wPanel, BorderLayout.EAST);
+		fb = new FeedBackPanel();
+		cpanel = new CommentPanel(fb);
+		dcomment = new DescriptionComment(fb);
+		fpanel = new FunPanel(fb);
+		ppanel = new PreferredPanel(fb);
+		setLayout(new BorderLayout());
+		add(ppanel, BorderLayout.NORTH);
+		add(cpanel, BorderLayout.WEST);
+		add(fpanel, BorderLayout.EAST);
+		add(dcomment, BorderLayout.CENTER);
+		add(fb, BorderLayout.SOUTH);
 	}
-
-	public static void main(String[] args) {
-		WhoAreYou whoAreYou = new WhoAreYou();
-		whoAreYou.setVisible(true);
-	}
+	
+	
 
 }
